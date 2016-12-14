@@ -58,7 +58,7 @@ namespace Chisl3._4._Runge_Kutt
         /// <summary>
         /// Вычисление коэффициента k4
         /// </summary>
-        static double koeff4(function f, double x, double y, double k3, double h)
+        static double koeff4(function f, double x, double y, double k3, double h)//
         {
             return f(x + h , y + h * k3);
         }
