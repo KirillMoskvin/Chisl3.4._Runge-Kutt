@@ -16,7 +16,7 @@ namespace Chisl3._4._Runge_Kutt
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FormMain());
         }
     }
 }
