@@ -33,19 +33,22 @@
             this.label2 = new System.Windows.Forms.Label();
             this.nudX0 = new System.Windows.Forms.NumericUpDown();
             this.jhk = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.nudB = new System.Windows.Forms.NumericUpDown();
-            this.nudH = new System.Windows.Forms.NumericUpDown();
+            this.nudY0 = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
             this.lbl = new System.Windows.Forms.Label();
+            this.nudH = new System.Windows.Forms.NumericUpDown();
+            this.nudB = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
             this.lblSolution = new System.Windows.Forms.Label();
             this.btnTask = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.nudY0 = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dgv_output = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.nudX0)).BeginInit();
             this.jhk.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudY0)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_output)).BeginInit();
             this.SuspendLayout();
             // 
             // cbEquation
@@ -91,13 +94,15 @@
             0,
             0,
             196608});
-            this.nudX0.Location = new System.Drawing.Point(76, 30);
+            this.nudX0.Location = new System.Drawing.Point(135, 30);
             this.nudX0.Name = "nudX0";
             this.nudX0.Size = new System.Drawing.Size(120, 23);
             this.nudX0.TabIndex = 3;
+            this.nudX0.ValueChanged += new System.EventHandler(this.nudX0_ValueChanged);
             // 
             // jhk
             // 
+            this.jhk.Controls.Add(this.label4);
             this.jhk.Controls.Add(this.nudY0);
             this.jhk.Controls.Add(this.label5);
             this.jhk.Controls.Add(this.lbl);
@@ -114,15 +119,48 @@
             this.jhk.TabStop = false;
             this.jhk.Text = "Задача Коши:";
             // 
-            // label3
+            // nudY0
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label3.Location = new System.Drawing.Point(10, 74);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(24, 17);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "b=";
+            this.nudY0.DecimalPlaces = 3;
+            this.nudY0.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.nudY0.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nudY0.Location = new System.Drawing.Point(135, 102);
+            this.nudY0.Name = "nudY0";
+            this.nudY0.Size = new System.Drawing.Size(120, 23);
+            this.nudY0.TabIndex = 9;
+            this.nudY0.ValueChanged += new System.EventHandler(this.nudY0_ValueChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label5.Location = new System.Drawing.Point(9, 108);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(31, 17);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "y0=";
+            // 
+            // lbl
+            // 
+            this.lbl.AutoSize = true;
+            this.lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbl.Location = new System.Drawing.Point(9, 142);
+            this.lbl.Name = "lbl";
+            this.lbl.Size = new System.Drawing.Size(0, 17);
+            this.lbl.TabIndex = 7;
+            // 
+            // nudH
+            // 
+            this.nudH.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.nudH.Location = new System.Drawing.Point(135, 140);
+            this.nudH.Name = "nudH";
+            this.nudH.Size = new System.Drawing.Size(120, 23);
+            this.nudH.TabIndex = 5;
+            this.nudH.ValueChanged += new System.EventHandler(this.nudH_ValueChanged);
             // 
             // nudB
             // 
@@ -133,34 +171,21 @@
             0,
             0,
             196608});
-            this.nudB.Location = new System.Drawing.Point(76, 68);
+            this.nudB.Location = new System.Drawing.Point(135, 68);
             this.nudB.Name = "nudB";
             this.nudB.Size = new System.Drawing.Size(120, 23);
             this.nudB.TabIndex = 6;
+            this.nudB.ValueChanged += new System.EventHandler(this.nudB_ValueChanged);
             // 
-            // nudH
+            // label3
             // 
-            this.nudH.DecimalPlaces = 3;
-            this.nudH.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.nudH.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nudH.Location = new System.Drawing.Point(76, 140);
-            this.nudH.Name = "nudH";
-            this.nudH.Size = new System.Drawing.Size(120, 23);
-            this.nudH.TabIndex = 5;
-            // 
-            // lbl
-            // 
-            this.lbl.AutoSize = true;
-            this.lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lbl.Location = new System.Drawing.Point(9, 142);
-            this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(48, 17);
-            this.lbl.TabIndex = 7;
-            this.lbl.Text = "Шаг h:";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label3.Location = new System.Drawing.Point(10, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(24, 17);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "b=";
             // 
             // lblSolution
             // 
@@ -174,7 +199,7 @@
             // btnTask
             // 
             this.btnTask.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnTask.Location = new System.Drawing.Point(109, 296);
+            this.btnTask.Location = new System.Drawing.Point(119, 361);
             this.btnTask.Name = "btnTask";
             this.btnTask.Size = new System.Drawing.Size(95, 26);
             this.btnTask.TabIndex = 9;
@@ -182,35 +207,33 @@
             this.btnTask.UseVisualStyleBackColor = true;
             this.btnTask.Click += new System.EventHandler(this.btnTask_Click);
             // 
-            // label5
+            // label4
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label5.Location = new System.Drawing.Point(9, 108);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(31, 17);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "y0=";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 146);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(100, 17);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Кол-во шагов:";
             // 
-            // nudY0
+            // dgv_output
             // 
-            this.nudY0.DecimalPlaces = 3;
-            this.nudY0.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.nudY0.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nudY0.Location = new System.Drawing.Point(76, 102);
-            this.nudY0.Name = "nudY0";
-            this.nudY0.Size = new System.Drawing.Size(120, 23);
-            this.nudY0.TabIndex = 9;
+            this.dgv_output.AllowUserToAddRows = false;
+            this.dgv_output.AllowUserToDeleteRows = false;
+            this.dgv_output.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_output.ColumnHeadersVisible = false;
+            this.dgv_output.Location = new System.Drawing.Point(24, 269);
+            this.dgv_output.Name = "dgv_output";
+            this.dgv_output.ReadOnly = true;
+            this.dgv_output.Size = new System.Drawing.Size(270, 77);
+            this.dgv_output.TabIndex = 10;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(330, 334);
+            this.ClientSize = new System.Drawing.Size(330, 399);
+            this.Controls.Add(this.dgv_output);
             this.Controls.Add(this.btnTask);
             this.Controls.Add(this.lblSolution);
             this.Controls.Add(this.jhk);
@@ -222,9 +245,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudX0)).EndInit();
             this.jhk.ResumeLayout(false);
             this.jhk.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudY0)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_output)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -245,6 +269,8 @@
         private System.Windows.Forms.Button btnTask;
         private System.Windows.Forms.NumericUpDown nudY0;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridView dgv_output;
     }
 }
 

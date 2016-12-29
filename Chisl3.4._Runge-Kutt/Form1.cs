@@ -34,7 +34,7 @@ namespace Chisl3._4._Runge_Kutt
 
         double f3(double x, double y)
         {
-            return Math.Sin(x) + 5*y*y*y;
+            return Math.Sin(x) + 5*Math.Cos(y);
         }
 
         private void btnTask_Click(object sender, EventArgs e)
@@ -45,9 +45,9 @@ namespace Chisl3._4._Runge_Kutt
                 nudX0.Focus();
                 return;
             }
-            if (nudH.Value>=(nudB.Value-nudX0.Value))
+            if (nudH.Value<=0)
             {
-                MessageBox.Show("Введите h>b-a", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Введите h>0", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 nudH.Focus();
                 return;
             }
@@ -56,15 +56,52 @@ namespace Chisl3._4._Runge_Kutt
             switch (cbEquation.SelectedIndex)
             {
                 case 0:
-                    lblSolution.Text = "Ответ: " + RungeKutta.Solve(f1, (double)nudX0.Value, (double)nudY0.Value, (double)nudH.Value, (double)nudB.Value);
+                    FillGrid(RungeKutta.Solve(f1, (double)nudX0.Value, (double)nudY0.Value, (int)nudH.Value, (double)nudB.Value));
                     break;
                 case 1:
-                    lblSolution.Text = "Ответ: " + RungeKutta.Solve(f2, (double)nudX0.Value, (double)nudY0.Value, (double)nudH.Value, (double)nudB.Value);
+                    FillGrid(RungeKutta.Solve(f2, (double)nudX0.Value, (double)nudY0.Value, (int)nudH.Value, (double)nudB.Value));
                     break;
                 case 2:
-                    lblSolution.Text = "Ответ: " + RungeKutta.Solve(f3, (double)nudX0.Value, (double)nudY0.Value, (double)nudH.Value, (double)nudB.Value);
+                    FillGrid(RungeKutta.Solve(f3, (double)nudX0.Value, (double)nudY0.Value, (int)nudH.Value, (double)nudB.Value));
                     break;
             }       
+        }
+
+        void FillGrid(List<PointF> points)
+        {
+            dgv_output.Rows.Clear();
+            dgv_output.Columns.Clear();
+            dgv_output.Columns.Add("", "");
+            dgv_output.Rows.Add(2);
+            dgv_output.Rows[0].HeaderCell.Value = "x";
+            dgv_output.Rows[1].HeaderCell.Value = "y";
+            for(int i=0; i<points.Count; ++i)
+            {
+                dgv_output.Columns.Add("", "");
+                dgv_output.Rows[0].Cells[i].Value = points[i].X.ToString();
+                dgv_output.Rows[1].Cells[i].Value = points[i].Y.ToString();
+            }
+            dgv_output.Columns.RemoveAt(dgv_output.Columns.Count - 1);
+        }
+
+        private void nudH_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nudY0_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nudB_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nudX0_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

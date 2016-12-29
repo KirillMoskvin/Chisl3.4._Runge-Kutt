@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,26 +9,31 @@ namespace Chisl3._4._Runge_Kutt
 {
     class RungeKutta
     {
+        const double eps = 0.0001;
         /// <summary>
         /// Сигнатура передваваемой функции, зависимой от х и у
         /// </summary>
         public delegate double function(double x, double y);
         
-        public static double Solve(function func, double x0, double y0, double h, double b)
+        public static List<PointF> Solve(function func, double x0, double y0, int n, double b)
         {
-            double res = y0;
+            List<PointF> res = new List<PointF>();
+            double y = y0;
             double x = x0;
-            do
+            double h = (b - x0) / n;
+            res.Add(new PointF((float)x, (float)y));
+            while (x <= b-h+eps)
             {
-                double k1 = koeff1(func, x, res);
-                double k2 = koeff2(func, x, res, k1, h);
-                double k3 = koeff3(func, x, res, k2, h);
-                double k4 = koeff4(func, x, res, k3, h);
-                double deltaY0 = h / 6 * (k1 + 2 * k2 + 2 * k3 + k4);
-                res += deltaY0;
                 x += h;
+                double k1 = koeff1(func, x, y);
+                double k2 = koeff2(func, x, y, k1, h);
+                double k3 = koeff3(func, x, y, k2, h);
+                double k4 = koeff4(func, x, y, k3, h);
+                double deltaY0 = h / 6 * (k1 + 2 * k2 + 2 * k3 + k4);
+                y += deltaY0;
+                res.Add(new PointF((float)x, (float)y));
             }
-            while (x < b);//по всем значениям x до b с шагом h
+            //по всем значениям x до b с шагом h
             return res;
         }
 
